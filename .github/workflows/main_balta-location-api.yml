@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'balta-location-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B73E4E4E8E57466ABD5EF5CEADAA71B8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A8485E5DE6424143A190B86E5AEE2FF5 }}
           package: .
