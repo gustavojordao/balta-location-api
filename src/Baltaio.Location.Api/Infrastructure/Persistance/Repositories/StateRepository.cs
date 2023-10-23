@@ -1,5 +1,6 @@
 ﻿using Baltaio.Location.Api.Application.Addresses.Commons;
 using Baltaio.Location.Api.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Baltaio.Location.Api.Infrastructure.Persistance.Repositories;
 
@@ -12,18 +13,21 @@ public class StateRepository : IStateRepository
         _context = context;
     }
 
-    public Task AddAllAsync(IEnumerable<State> states)
+    public async Task AddAllAsync(IEnumerable<State> states)
     {
-        throw new NotImplementedException();
+        await _context.States.AddRangeAsync(states);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<List<State>?> GetAllAsync()
+    public async Task<List<State>?> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.States.ToListAsync();
     }
 
-    public Task<State?> GetAsync(int stateCode)
+    public async Task<State?> GetAsync(int stateCode, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        State? state = await _context.States.FindAsync(stateCode, cancellationToken);
+        return state;
     }
 }
+
